@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+    <h1>Data Binding!</h1>
+    <h1 id="head"></h1>
+    <button onclick=postData()> Send an HTTP POST request </button><br><br>
+    <button onclick=getData()> Send an HTTP GET request </button><br><br>
+    <!-- <button id="bind">BIND request </button><br><br> -->
+    <br><br>
+
+
+
+    <div class="col-lg-6"  >
+        <table class="table table-bordered table-striped" style="border: 4px solid black ; margin: auto; ">
+            <thead>
+                <tr>
+                    <th style="padding: 70px;">User Id</th>
+                    <th style="padding: 70px;">Id</th>
+                    <th style="padding: 70px;">Title</th>
+                    <th style="padding: 70px;">Completed</th>
+                </tr>
+
+            </thead>
+            <tbody id="tb1">
+                <td id="1"></td>
+            </tbody>
+        </table>
+    </div>
+    <script>
+
+        // // Post method
+        // $(document).ready(function () {
+        //     $("#post").click(function () {
+        //         $.post("https://eoitq4o9avhhbf5.m.pipedream.net",
+        //             {
+        //                 name: "Vanshika",
+        //                 city: "Ludhiana"
+        //             },
+        //             function (data, status) {
+        //                 alert("Post Success!");
+        //             });
+        //     });
+        // });
+
+        // $(document).ready(function () {
+        //     $("#get").click(function () {
+        //         $.get("https://jsonplaceholder.typicode.com/todos", function (data, status) {
+        //             alert("GET Success");
+        //         });
+
+        //     });
+        // });
+
+        // $(document).ready(function () {
+        //     $.ajax({
+        //         url: "https://jsonplaceholder.typicode.com/todos",
+        //         type: "GET",
+        //         cache: true,
+        //         success: function (response) {
+        //             $.each(response, function (key, value) {
+        //                 $('#exampleid').append("<tr>\
+        // 								<td>"+ value.column1 + "</td>\
+        // 								<td>"+ value.column2y + "</td>\
+        // 								<td>"+ value.column3 + "</td>\
+        // 								</tr>");
+        //             })
+        //     });
+
+        //     });
+
+        function postData() {
+            $.ajax({
+                url: 'https://eoitq4o9avhhbf5.m.pipedream.net',
+                method: 'post',
+                data: {
+                    Name: "Vanshika"
+                },
+                success: function (Data) {
+                    alert("Data Success");
+                    console.log(Data);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        }
+
+        function getData() {
+            $.ajax({
+                url: 'https://jsonplaceholder.typicode.com/todos',
+                method: 'get',
+                success: (function (data) {
+                    let allData = data;
+                    allData.forEach(value => {
+                        $('#tb1').append('<tr><td id="#1">' + value.userId + '</td>' +' <td>' + value.id + '</td>' +' <td>' + value.title + '</td> '+' <td>' + value.completed + '</td></tr>')
+                    });
+                    // alert("Data Success");
+                    // console.log(data.title);
+                    // $('#head').text(data.title);
+                }),
+                error: function (err) {
+                    console.log(err);
+                }
+            })
+        }
+
+
+
+    </script>
+
+
+</body>
+
+</html>
